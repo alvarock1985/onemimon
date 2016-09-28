@@ -1,0 +1,15 @@
+
+
+
+<div id="map_canvas" ng-controller="MapsCtrl">
+  <ui-gmap-google-map center="map.center" zoom="map.zoom" events="map.events" options="options">
+    <ui-gmap-marker ng-repeat="m in historic" coords="{latitude:m.stationLat, longitude : m.stationLon}" icon="m.icon" idkey="m.stationId" options="m.options">
+      <ui-gmap-window options="windowOptions" closeClick="closeClick()">
+            <p>Nombre de la estacion: {{m.stationName}}</p>
+
+      </ui-gmap-window>
+    </ui-gmap-marker>
+
+  </ui-gmap-google-map>
+</div>
+
