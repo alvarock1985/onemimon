@@ -1,19 +1,3 @@
 /**
- * Created by alvarock on 9/26/16.
+ * Created by Alvarock on 30/09/2016.
  */
-'use strict';
-angular.module('onemiMonApp')
-
-  .controller('WindowCtrl', function($scope, dataSensor){
-
-      dataSensor.success(function(data){
-
-        $scope.dataSensor = data;
-
-
-      });
-
-
-
-
-  });
