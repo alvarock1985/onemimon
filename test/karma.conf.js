@@ -22,6 +22,7 @@ module.exports = function(config) {
       // bower:js
       'bower_components/jquery/dist/jquery.js',
       'bower_components/angular/angular.js',
+      'bower_components/angular-route/angular-route.js',
       'bower_components/angular-animate/angular-animate.js',
       'bower_components/angular-cookies/angular-cookies.js',
       'bower_components/angular-resource/angular-resource.js',
@@ -50,7 +51,6 @@ module.exports = function(config) {
       'bower_components/bootstrap-sass/vendor/assets/javascripts/bootstrap/modal.js',
       'bower_components/bootstrap-sass/vendor/assets/javascripts/bootstrap/tooltip.js',
       'bower_components/bootstrap-sass/vendor/assets/javascripts/bootstrap/popover.js',
-      'bower_components/angular-route/angular-route.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',
