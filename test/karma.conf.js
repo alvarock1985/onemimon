@@ -46,6 +46,11 @@ module.exports = function(config) {
       'bower_components/bootstrap-sass/vendor/assets/javascripts/bootstrap/popover.js',
       'bower_components/lodash/lodash.js',
       'bower_components/angular-google-maps/dist/angular-google-maps.js',
+<<<<<<< HEAD
+=======
+      'bower_components/chart.js/dist/Chart.js',
+      'bower_components/angular-chart.js/dist/angular-chart.js',
+>>>>>>> office
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',

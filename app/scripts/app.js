@@ -16,7 +16,9 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'uiGmapgoogle-maps'
+    'uiGmapgoogle-maps',
+    'chart.js'
+
 
 
 

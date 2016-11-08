@@ -48,6 +48,7 @@ angular.module('onemiMonApp')
 
 
 
+
     uiGmapGoogleMapApi.then(function(maps){
 
     });
