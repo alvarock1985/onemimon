@@ -8,7 +8,7 @@ angular.module('onemiMonApp')
   .directive('chart', function(){
   return {
     restrict: 'E',
-    templateUrl: 'views/chart.html',
+    templateUrl: 'views/infoWindow.html',
     scope: {
       info: '='
 

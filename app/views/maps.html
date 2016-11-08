@@ -1,7 +1,7 @@
 
 
 
-<div id="map_canvas" ng-controller="MapsCtrl">
+<div id="map_canvas" ng-controller="MapsCtrl" class="col-md-6">
   <ui-gmap-google-map center="map.center" zoom="map.zoom" events="map.events" options="options">
     <ui-gmap-markers models="markers" idKey="'id'" coords="'self'" events="map.markersEvents">
     </ui-gmap-markers>
@@ -19,3 +19,14 @@
   </ui-gmap-google-map>
 </div>
 
+<div class="col-md-6" ng-controller="reportCtrl" >
+    <div class="reports">
+    <h1>Reportes </h1>
+    <div>
+      <h3 ng-repeat="m in mostrar">{{m.name}}</h3>
+        </div>
+    </div>
+
+
+
+</div>
