@@ -20,11 +20,23 @@
 </div>
 
 <div class="col-md-6" ng-controller="reportCtrl" >
-    <div class="reports">
-    <h1>Reportes </h1>
-    <div>
-      <h3 ng-repeat="m in mostrar">{{m.name}}</h3>
+    <div class="reports" >
+    <h3>Reportes {{saveData()}}</h3>
+
+    <div ng-repeat="m in mostrar">
+
+
+        <ul class="list-unstyled" >
+
+            <li>Nombre estacion: {{m.name}}</li>
+            <li>Promedio temperatura ultimas 5hrs: {{getAvgTemp(m.id)}} ºC</li>
+            <li>Promedio humedad ultimas 5hrs: {{getAvgHum(m.id)}} %</li>
+            <li>Promedio caudal ultimas 5hrs: {{getAvgCau(m.id)}} m3</li>
+
+
+        </ul>
         </div>
+
     </div>
 
 

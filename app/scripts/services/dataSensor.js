@@ -6,7 +6,7 @@
 angular.module('onemiMonApp')
 
   .factory('dataSensor',['$http', function($http){
-    return $http.get('http://168.232.165.95:8080/EmuSensor/webapi/historic')
+    return $http.get('http://localhost:8080/EmuSensor/webapi/historic')
       .success(function(data){
         return data;
       })
