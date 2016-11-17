@@ -19,7 +19,7 @@
   </ui-gmap-google-map>
 </div>
 
-<div class="col-md-6" ng-controller="reportCtrl" >
+<div class="col-md-6" ng-controller="reportCtrl" pdf-save-content="hola">
     <div class="reports" >
     <h3>Reportes {{saveData()}}</h3>
 
@@ -39,6 +39,7 @@
 
     </div>
 
+    <button pdf-save-button="hola" pdf-name="someone.pdf" class="btn">Download</button>
 
 
 </div>

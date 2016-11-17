@@ -42,6 +42,8 @@
     "test": "karma start test/karma.conf.js"
   },
   "dependencies": {
-    "angular-chart.js": "^1.0.3"
+    "angular-chart.js": "^1.0.3",
+    "png-js": "^0.1.1",
+    "zlib": "^1.0.5"
   }
 }

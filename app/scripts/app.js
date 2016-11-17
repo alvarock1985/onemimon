@@ -17,7 +17,8 @@ angular
     'ngSanitize',
     'ngTouch',
     'uiGmapgoogle-maps',
-    'chart.js'
+    'chart.js',
+      'htmlToPdfSave'
 
 
 
