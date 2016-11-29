@@ -1,114 +1,96 @@
 /**
- * Created by alvaro.cabrera on 11/8/2016.
+ * Created by alvaro on 29-11-16.
  */
-'use strict';
 
+'use strict';
 
 angular.module('onemiMonApp')
 
-.controller ('reportCtrl', function($scope, dataSensor){
+.controller('ReportsCtrl', function($scope, dataOnHours){
 
-    dataSensor.success(function(datos){
+    $scope.target2 = 5;
+    $scope.id2 =1;
 
-        $scope.mostrar = datos;
-    });
+    $scope.init = function(id){
 
-    $scope.getAvgTemp = function(id){
-        var data = [];
-        for(var i in $scope.mostrar){
-            if($scope.mostrar[i].id ===id){
-                data = $scope.mostrar[i].data;
+        $scope.id = id;
+        console.log(id);
+    }
 
-            };
+    $scope.getAllData = function(){
+        dataOnHours.getAllData().success(function(data){
+            $scope.allData = data;
 
-        };
+        })
 
-        var tempData = [];
-        for(var i in data){
-            if(data[i].sensorName === 'temp'){
-                tempData.push(data[i].sensorData);
+    }
 
-            };
+    $scope.loadData2 = function(target, id){
+        dataOnHours.getData2(target, id).success(function(data){
+            $scope.datos = data;
+            console.log($scope.datos);
+            $scope.dataArray = data;
+            $scope.data = [];
+            $scope.labels = data.dataTimestamp;
 
-        };
-
-        var total = 0;
-        var avg = 0;
-        for(var i in tempData){
-            total += tempData[i];
-
-
-        };
-        avg = total/tempData.length;
-        return avg;
-
-
-    };
-
-
-    $scope.getAvgHum = function(id){
-        var data = [];
-        for(var i in $scope.mostrar){
-            if($scope.mostrar[i].id ===id){
-                data = $scope.mostrar[i].data;
-
-            };
-
-        };
-
-        var tempData = [];
-        for(var i in data){
-            if(data[i].sensorName === 'humedad'){
-                tempData.push(data[i].sensorData);
-
-            };
-
-        };
-
-        var total = 0;
-        var avg = 0;
-        for(var i in tempData){
-            total += tempData[i];
-
-
-        };
-        avg = total/tempData.length;
-        return avg;
+            $scope.tempdata = data.dataArrayTemp;
+            $scope.data.push($scope.tempdata);
+            $scope.humData = data.dataArrayHum;
+            $scope.data.push($scope.humData);
+            $scope.cauData = data.dataArrayHum;
+            $scope.data.push($scope.cauData);
+        });
 
 
     };
 
-    $scope.getAvgCau = function(id){
-        var data = [];
-        for(var i in $scope.mostrar){
-            if($scope.mostrar[i].id ===id){
-                data = $scope.mostrar[i].data;
-
-            };
-
-        };
-
-        var tempData = [];
-        for(var i in data){
-            if(data[i].sensorName === 'caudal'){
-                tempData.push(data[i].sensorData);
-
-            };
-
-        };
-
-        var total = 0;
-        var avg = 0;
-        for(var i in tempData){
-            total += tempData[i];
+    $scope.getAllData();
+    $scope.loadData2($scope.target2, $scope.id2);
 
 
-        };
-        avg = total/tempData.length;
-        return avg;
-
-
+    $scope.series = ['Temperatura', 'Humedad', 'Caudal'];
+    $scope.onClick = function (points, evt) {
+        console.log(points, evt);
     };
+    $scope.datasetOverride = [{ yAxisID: 'y-axis-1' }, { yAxisID: 'y-axis-2' }];
+    $scope.options = {
+        responsive: true,
+        scales: {
+            yAxes: [
+                {
+                    id: 'y-axis-1',
+                    type: 'linear',
+                    display: true,
+                    position: 'left'
+                },
+                {
+                    id: 'y-axis-2',
+                    type: 'linear',
+                    display: true,
+                    position: 'right'
+                }
+            ],
+            xAxes : [{
+                display: true,
+                position: 'bottom',
+                ticks: {
+                    minRotation: 90,
+                    maxRotation: 90
+                }
+            }],
+            legend: [{
+                display:true
+            }]
+        }
+    };
+
+
+
+
+
+
+
+
 
 
 

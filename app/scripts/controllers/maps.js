@@ -3,7 +3,7 @@
 
 angular.module('onemiMonApp')
 
-  .controller('MapsCtrl', function ($scope, $http, uiGmapGoogleMapApi, dataSensor) {
+  .controller('MapsCtrl', function ($scope, $http, uiGmapGoogleMapApi, stationData) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -23,7 +23,8 @@ angular.module('onemiMonApp')
             model: {},
             show: false,
             options: {
-                pixelOffset: {width: -1, height: -20}
+                pixelOffset: {width: -1, height: -20},
+                maxWidth: 500
             }
 
         },
@@ -37,7 +38,7 @@ angular.module('onemiMonApp')
     };
 
 
-    dataSensor.success(function(datos){
+    stationData.success(function(datos){
       $scope.markers = datos;
 
 

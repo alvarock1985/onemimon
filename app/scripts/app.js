@@ -56,6 +56,12 @@ angular
         controllerAs: 'win',
         templateUrl: 'views/window.html'
       })
+        .when('/reports',{
+            controller: 'ReportsCtrl',
+            controllerAs: 'rep',
+            templateUrl: 'views/reports.html'
+        })
+
       .otherwise({
         redirectTo: '/'
       });

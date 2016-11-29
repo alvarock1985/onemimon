@@ -1,7 +1,7 @@
 
 
 
-<div id="map_canvas" ng-controller="MapsCtrl" class="col-md-6">
+<div id="map_canvas" ng-controller="MapsCtrl" class="col-md-7">
   <ui-gmap-google-map center="map.center" zoom="map.zoom" events="map.events" options="options">
     <ui-gmap-markers models="markers" idKey="'id'" coords="'self'" events="map.markersEvents">
     </ui-gmap-markers>
@@ -19,27 +19,39 @@
   </ui-gmap-google-map>
 </div>
 
-<div class="col-md-6" ng-controller="reportCtrl" pdf-save-content="hola">
+
+
+<div class="col-md-5" ng-controller="StatusCtrl">
     <div class="reports" >
-    <h3>Reportes {{saveData()}}</h3>
+    <h3>Revision de estado</h3>
+        <form>
+            Rango de muestra(hrs): <input type="number" ng-model="target">
+            <button ng-click="loadData(target)">Consultar</button>
+        </form>
 
-    <div ng-repeat="m in mostrar">
+        <table class="table">
+            <tr>
+                <th>Nombre estacion</th>
+                <th>Promedio Temperatura</th>
+                <th>Promedio Humedad</th>
+                <th>Promedio Caudal</th>
+            </tr>
+            <tr ng-repeat="dato in datos">
+                <td>{{dato.name}} </td>
+                <td>{{dato.tempData}} ºC</td>
+                <td>{{dato.humData}} %</td>
+                <td>{{dato.caudalData}} m3/seg</td>
+            </tr>
 
 
-        <ul class="list-unstyled" >
-
-            <li>Nombre estacion: {{m.name}}</li>
-            <li>Promedio temperatura ultimas 5hrs: {{getAvgTemp(m.id)}} ºC</li>
-            <li>Promedio humedad ultimas 5hrs: {{getAvgHum(m.id)}} %</li>
-            <li>Promedio caudal ultimas 5hrs: {{getAvgCau(m.id)}} m3</li>
+        </table>
 
 
-        </ul>
-        </div>
+
+
+
 
     </div>
 
-    <button pdf-save-button="hola" pdf-name="someone.pdf" class="btn">Download</button>
-
-
 </div>
+

@@ -1,12 +1,9 @@
-<div ng-controller="WindowCtrl">
-   <p> Nombre de estacion: {{parameter.name}} </p>
-    <div >{{saveData(parameter.data)}}</div>
-    <p>Promedio Temperatura ultimas 5 horas: {{avgTemp()}}ºC</p>
-    <p>Promedio Humedad ultimas 5 horas: {{avgHum()}}%</p>
-    <p>Promedio Caudal ultimas 5 horas: {{avgCau()}} m/sec³</p>
+<div ng-controller="WindowCtrl" ng-init="init(parameter.id)" class="cursor">
+   <p> Nombre de estacion: {{parameter.description}} </p>
+    <p>Comportamiento ultimas 5 horas</p>
    <canvas id="line" class="chart chart-line" chart-data="data"
            chart-labels="labels" chart-series="series" chart-options="options"
-           chart-dataset-override="datasetOverride" chart-click="onClick"
+           chart-dataset-override="datasetOverride" chart-click="onClick">
    </canvas>
 
 

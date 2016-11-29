@@ -5,8 +5,8 @@
 'use strict';
 angular.module('onemiMonApp')
 
-  .factory('dataSensor',['$http', function($http){
-    return $http.get('http://localhost:8080/EmuSensor/webapi/historic')
+  .factory('stationData',['$http', function($http){
+    return $http.get('http://localhost:8080/EmuSensor/webapi/stations')
       .success(function(data){
         return data;
       })
@@ -15,4 +15,6 @@ angular.module('onemiMonApp')
       });
 
   }]);
+
+
 
