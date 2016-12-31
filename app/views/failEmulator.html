@@ -1,0 +1,33 @@
+<div ng-controller="FailCtrl">
+    <h4>Emulador de Fallas para estacion : </h4>
+    <p><label for="stationSelect">Seleccione Estacion</label>
+        <select name="stationSelect" ng-model="id" ng-options="m.id as m.description for m in stationData"></select>
+    </p>
+
+    <p>
+        <label for="severityLevel">Seleccione nivel de falla</label>
+        <select name="severityLevel">
+            <option>Bajo</option>
+            <option>Medio</option>
+            <option>Alto</option>
+        </select>
+
+    </p>
+
+    <p>
+    <h5><b>Tiempo de prueba(minutos)</b><input type="number" min="0" ng-model="minutes"></h5>
+
+
+    </p>
+    <p>
+
+        <button>Comenzar prueba</button>
+
+    </p>
+
+    <div class="resultado">
+        Este son los resultados de la prueba
+
+    </div>
+
+</div>

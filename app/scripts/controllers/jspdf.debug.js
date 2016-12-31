@@ -1,4 +1,7 @@
 /**
+ * Created by alvaro on 30-12-16.
+ */
+/**
  * Created by alvaro on 29-11-16.
  */
 (function (global, factory) {
@@ -8,10 +11,10 @@
 }(this, function () { 'use strict';
 
     var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
-        return typeof obj;
-    } : function (obj) {
-        return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj;
-    };
+            return typeof obj;
+        } : function (obj) {
+            return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj;
+        };
 
     /** @preserve
      * jsPDF - PDF Document creation from JavaScript
@@ -3959,14 +3962,14 @@ Q\n";
                 if (images) {
                     // this is NOT the first time this method is ran on this instance of jsPDF object.
                     imageIndex = Object.keys ? Object.keys(images).length : function (o) {
-                        var i = 0;
-                        for (var e in o) {
-                            if (o.hasOwnProperty(e)) {
-                                i++;
+                            var i = 0;
+                            for (var e in o) {
+                                if (o.hasOwnProperty(e)) {
+                                    i++;
+                                }
                             }
-                        }
-                        return i;
-                    }(images);
+                            return i;
+                        }(images);
                 }
 
                 return imageIndex;
@@ -13096,8 +13099,8 @@ Q\n";
 
         Color.prototype.toString = function() {
             return this.a !== null && this.a !== 1 ?
-            "rgba(" + [this.r, this.g, this.b, this.a].join(",") + ")" :
-            "rgb(" + [this.r, this.g, this.b].join(",") + ")";
+                "rgba(" + [this.r, this.g, this.b, this.a].join(",") + ")" :
+                "rgb(" + [this.r, this.g, this.b].join(",") + ")";
         };
 
         Color.prototype.namedColor = function(value) {
@@ -13330,8 +13333,8 @@ Q\n";
         html2canvas.utils = utils;
 
         var html2canvasExport = (typeof(document) === "undefined" || typeof(Object.create) !== "function" || typeof(document.createElement("canvas").getContext) !== "function") ? function() {
-            return Promise.reject("No canvas support");
-        } : html2canvas;
+                return Promise.reject("No canvas support");
+            } : html2canvas;
 
         module.exports = html2canvasExport;
 
@@ -13533,14 +13536,14 @@ Q\n";
             var self = this;
             var bounds = getBounds(container);
             this.promise = (!sameOrigin ? this.proxyLoad(options.proxy, bounds, options) : new Promise(function(resolve) {
-                if (container.contentWindow.document.URL === "about:blank" || container.contentWindow.document.documentElement == null) {
-                    container.contentWindow.onload = container.onload = function() {
+                    if (container.contentWindow.document.URL === "about:blank" || container.contentWindow.document.documentElement == null) {
+                        container.contentWindow.onload = container.onload = function() {
+                            resolve(container);
+                        };
+                    } else {
                         resolve(container);
-                    };
-                } else {
-                    resolve(container);
-                }
-            })).then(function(container) {
+                    }
+                })).then(function(container) {
                 var html2canvas = _dereq_('./core');
                 return html2canvas(container.contentWindow.document.documentElement, {type: 'view', width: container.width, height: container.height, proxy: options.proxy, javascriptEnabled: options.javascriptEnabled, removeContainer: options.removeContainer, allowTaint: options.allowTaint, imageTimeout: options.imageTimeout / 2});
             }).then(function(canvas) {
@@ -13922,11 +13925,11 @@ Q\n";
 
         NodeContainer.prototype.isElementVisible = function() {
             return this.node.nodeType === Node.TEXT_NODE ? this.parent.visible : (
-                this.css('display') !== "none" &&
-                this.css('visibility') !== "hidden" &&
-                !this.node.hasAttribute("data-html2canvas-ignore") &&
-                (this.node.nodeName !== "INPUT" || this.node.getAttribute("type") !== "hidden")
-            );
+                    this.css('display') !== "none" &&
+                    this.css('visibility') !== "hidden" &&
+                    !this.node.hasAttribute("data-html2canvas-ignore") &&
+                    (this.node.nodeName !== "INPUT" || this.node.getAttribute("type") !== "hidden")
+                );
         };
 
         NodeContainer.prototype.css = function(attribute) {
@@ -14607,8 +14610,8 @@ Q\n";
             container.applyTextTransform();
             var characters = punycode.ucs2.decode(container.node.data);
             var textList = (!this.options.letterRendering || noLetterSpacing(container)) && !hasUnicode(container.node.data) ? getWords(characters) : characters.map(function(character) {
-                return punycode.ucs2.encode([character]);
-            });
+                    return punycode.ucs2.encode([character]);
+                });
 
             var weight = container.parent.fontWeight();
             var size = container.parent.css('fontSize');
@@ -15057,8 +15060,8 @@ Q\n";
             var url = createProxyUrl(proxyUrl, src, callback);
 
             return supportsCORS ? XHR(url) : (jsonp(document, url, callback).then(function(response) {
-                return decode64(response.content);
-            }));
+                    return decode64(response.content);
+                }));
         }
         var proxyCount = 0;
 
@@ -15067,8 +15070,8 @@ Q\n";
             var callback = createCallback(supportsCORSImage);
             var url = createProxyUrl(proxyUrl, src, callback);
             return (supportsCORSImage ? Promise.resolve(url) : jsonp(document, url, callback).then(function(response) {
-                return "data:" + response.type + ";base64," + response.content;
-            }));
+                    return "data:" + response.type + ";base64," + response.content;
+                }));
         }
 
         function jsonp(document, url, callback) {
@@ -15630,18 +15633,18 @@ Q\n";
             var self = this;
 
             this.promise = _native ? new Promise(function(resolve, reject) {
-                self.image = new Image();
-                self.image.onload = resolve;
-                self.image.onerror = reject;
-                self.image.src = "data:image/svg+xml," + (new XMLSerializer()).serializeToString(node);
-                if (self.image.complete === true) {
-                    resolve(self.image);
-                }
-            }) : this.hasFabric().then(function() {
-                return new Promise(function(resolve) {
-                    window.html2canvas.svg.fabric.parseSVGDocument(node, self.createCanvas.call(self, resolve));
+                    self.image = new Image();
+                    self.image.onload = resolve;
+                    self.image.onerror = reject;
+                    self.image.src = "data:image/svg+xml," + (new XMLSerializer()).serializeToString(node);
+                    if (self.image.complete === true) {
+                        resolve(self.image);
+                    }
+                }) : this.hasFabric().then(function() {
+                    return new Promise(function(resolve) {
+                        window.html2canvas.svg.fabric.parseSVGDocument(node, self.createCanvas.call(self, resolve));
+                    });
                 });
-            });
         }
 
         SVGNodeContainer.prototype = Object.create(SVGContainer.prototype);

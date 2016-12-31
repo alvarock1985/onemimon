@@ -38,14 +38,16 @@ angular.module('onemiMonApp')
     };
 
 
-    stationData.success(function(datos){
+
+
+    stationData.getStations().success(function(datos){
       $scope.markers = datos;
 
 
       });
 
 
-
+    console.log($scope.markers);
 
 
 

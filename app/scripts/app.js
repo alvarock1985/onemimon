@@ -62,6 +62,12 @@ angular
             templateUrl: 'views/reports.html'
         })
 
+        .when('/failEmulator',{
+            controller: 'FailCtrl',
+            controllerAs: 'fail',
+            templateUrl: 'views/failEmulator.html'
+        })
+
       .otherwise({
         redirectTo: '/'
       });

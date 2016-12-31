@@ -6,13 +6,16 @@
 angular.module('onemiMonApp')
 
   .factory('stationData',['$http', function($http){
-    return $http.get('http://localhost:8080/EmuSensor/webapi/stations')
-      .success(function(data){
-        return data;
-      })
-      .error(function(err){
-        return err;
-      });
+        var getStations = function(){
+            return $http.get('http://mon.acmeapps.xyz:8080/EmuSensor/webapi/stations')
+                .success(function (data) {
+                    return data;
+                })
+        };
+
+        return {
+            getStations : getStations
+        }
 
   }]);
 
