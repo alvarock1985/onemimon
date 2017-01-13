@@ -3,7 +3,7 @@
 
 angular.module('onemiMonApp')
 
-  .controller('MapsCtrl', function ($scope, $http, uiGmapGoogleMapApi, stationData) {
+  .controller('MapsCtrl', function ($scope, $http, uiGmapGoogleMapApi, stationData, riverData, quartileData) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -11,8 +11,9 @@ angular.module('onemiMonApp')
     ];
 
 
-
-
+    $scope.markers = [];
+    $scope.id = 1;
+    console.log($scope.id);
 
     $scope.map = {
 
@@ -37,17 +38,80 @@ angular.module('onemiMonApp')
         }
     };
 
+    $scope.loadData = function(id){
+        stationData.getStations(id).success(function(datos){
+            $scope.markers = datos;
+            $scope.loadDataQuartile(id);
+        });
+      };
+
+    $scope.loadDataQuartile = function(id){
+        quartileData.getQuartileData(id).success(function(data){
+            $scope.quartiles = data;
+            $scope.data = [];
 
 
 
-    stationData.getStations().success(function(datos){
-      $scope.markers = datos;
+
+            $scope.cauData = data.cauArray;
+            $scope.data.push($scope.cauData);
+            $scope.humData = data.humArray;
+            $scope.data.push($scope.humData);
+            $scope.tempData = data.tempArray;
+            $scope.data.push($scope.tempData);
+            $scope.prepData = data.prepArray;
+            $scope.data.push($scope.prepData);
+            $scope.otherData = data.otherArray;
+            $scope.data.push($scope.otherData);
+
+            console.log($scope.cauData);
+
+        });
+    };
+
+    $scope.loadData($scope.id);
+    $scope.loadDataQuartile($scope.id);
+
+    riverData.getRivers().success(function(data){
+        $scope.rivers = data;
+    });
 
 
-      });
+      $scope.labels = ['Min', 'Low', 'Mid', 'High', 'Max'];
+      $scope.series = ['Caudal', 'Humedad', 'Temperatura', 'Precipitaciones', 'Nieve'];
+      $scope.onClick = function (points, evt) {
+          console.log(points, evt);
+      };
+      $scope.datasetOverride = [{
 
+      }];
+      $scope.options = {
+          responsive: true,
+          scales: {
+              yAxes: [
+                  {
+                      id: 'y-axis-1',
+                      type: 'linear',
+                      display: true,
+                      position: 'left',
+                      ticks: {
+                          max:30
+                      }
+                  }
 
-    console.log($scope.markers);
+              ],
+              xAxes : [{
+                  id: 'x-axis',
+
+                  display: true,
+                  position: 'bottom'
+
+              }],
+              legend: [{
+                  display:true
+              }]
+          }
+      };
 
 
 

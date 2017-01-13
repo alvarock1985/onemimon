@@ -61,13 +61,19 @@ angular.module('onemiMonApp')
                     id: 'y-axis-1',
                     type: 'linear',
                     display: true,
-                    position: 'left'
+                    position: 'left',
+                    ticks: {
+                        max:30
+                    }
                 },
                 {
                     id: 'y-axis-2',
                     type: 'linear',
                     display: true,
-                    position: 'right'
+                    position: 'right',
+                    ticks: {
+                        max:30
+                    }
                 }
             ],
             xAxes : [{
