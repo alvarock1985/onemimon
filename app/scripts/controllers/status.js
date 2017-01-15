@@ -23,7 +23,7 @@ angular.module('onemiMonApp')
 
     }
 
-    $scope.loadData($scope.target);
+
 
 
     console.log($scope.datos);

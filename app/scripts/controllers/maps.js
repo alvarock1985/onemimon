@@ -3,7 +3,7 @@
 
 angular.module('onemiMonApp')
 
-  .controller('MapsCtrl', function ($scope, $http, uiGmapGoogleMapApi, stationData, riverData, quartileData) {
+  .controller('MapsCtrl', function ($scope, $http, uiGmapGoogleMapApi, stationData, riverData, quartileData, dataOnHours) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -13,6 +13,7 @@ angular.module('onemiMonApp')
 
     $scope.markers = [];
     $scope.id = 1;
+    $scope.target2 = 5;
     console.log($scope.id);
 
     $scope.map = {
@@ -38,10 +39,12 @@ angular.module('onemiMonApp')
         }
     };
 
-    $scope.loadData = function(id){
+    $scope.loadData = function(target, id){
         stationData.getStations(id).success(function(datos){
             $scope.markers = datos;
             $scope.loadDataQuartile(id);
+            $scope.loadDataAvg(target, id)
+
         });
       };
 
@@ -113,7 +116,18 @@ angular.module('onemiMonApp')
           }
       };
 
+      $scope.value = function(value){
+          $scope.target = value;
 
+      }
+
+      $scope.loadDataAvg = function(target, id){
+          dataOnHours.getData(target, id).success(function(data){
+              $scope.datos = data;
+          });
+
+
+      }
 
 
     uiGmapGoogleMapApi.then(function(maps){
