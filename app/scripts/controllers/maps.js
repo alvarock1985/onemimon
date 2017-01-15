@@ -55,19 +55,21 @@ angular.module('onemiMonApp')
 
 
 
+            $scope.cauMin = data.cauMin;
+            $scope.cauLow = data.cauLow;
+            $scope.cauLowMid = (data.cauMid + data.cauLow)/2;
+            $scope.cauMid = data.cauMid;
+            $scope.cauMidHigh = (data.cauHigh + data.cauMid)/2;
+            $scope.cauHigh = data.cauHigh;
+            $scope.cauMax = data.cauMax;
+            $scope.data = [
+                [{x:$scope.cauLow, y:1}, {x:$scope.cauMid, y:0},{x:$scope.cauLowMid, y:0},
+                    {x:$scope.cauMid, y:1},{x:$scope.cauMidHigh, y:0},
+                    {x:$scope.cauMid, y:0},{x:$scope.cauHigh, y:1},
+                    {x:$scope.cauMax, y:1}]
+            ];
+            return $scope.cauLow;
 
-            $scope.cauData = data.cauArray;
-            $scope.data.push($scope.cauData);
-            $scope.humData = data.humArray;
-            $scope.data.push($scope.humData);
-            $scope.tempData = data.tempArray;
-            $scope.data.push($scope.tempData);
-            $scope.prepData = data.prepArray;
-            $scope.data.push($scope.prepData);
-            $scope.otherData = data.otherArray;
-            $scope.data.push($scope.otherData);
-
-            console.log($scope.cauData);
 
         });
     };
@@ -80,42 +82,53 @@ angular.module('onemiMonApp')
     });
 
 
-      $scope.labels = ['Min', 'Low', 'Mid', 'High', 'Max'];
-      $scope.series = ['Caudal', 'Humedad', 'Temperatura', 'Precipitaciones', 'Nieve'];
+      $scope.labels = ["Bajo", "Medio", "Alto", "Max" ];
+      $scope.series = ['Caudal'];
+
       $scope.onClick = function (points, evt) {
           console.log(points, evt);
       };
-      $scope.datasetOverride = [{
+      $scope.datasetOverride = [
 
-      }];
+          {
+              xAxisID: 'x-axis-1',
+              showLines : true,
+              lineTension: 0
+          },
+          {
+              yAxisID: 'y-axis-1',
+              showLines: true,
+              lineTension: 0
+          }
+      ];
       $scope.options = {
-          responsive: true,
           scales: {
+
+              xAxes: [
+                  {
+                      id: 'x-axis-1',
+                      type: 'linear',
+                      position: 'bottom',
+                      showLines: true,
+                      lineTension: 0,
+                  },
+                  {
+                      id: 'x-axis-2',
+                      position:'top',
+                      display: true
+                  }
+              ],
               yAxes: [
                   {
                       id: 'y-axis-1',
-                      type: 'linear',
-                      display: true,
-                      position: 'left',
-                      ticks: {
-                          max:30
-                      }
+                      showLines: true,
+                      display: false,
+                      lineTension: 0
                   }
 
-              ],
-              xAxes : [{
-                  id: 'x-axis',
-
-                  display: true,
-                  position: 'bottom'
-
-              }],
-              legend: [{
-                  display:true
-              }]
+              ]
           }
       };
-
       $scope.value = function(value){
           $scope.target = value;
 
