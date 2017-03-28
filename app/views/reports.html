@@ -3,12 +3,12 @@
     <h3>Reporte comportamiento para la estacion: {{datos.name}}</h3>
     <h5> Rango de muestra(hrs): <input type="number" ng-model="target2"></h5>
     <h5>        <label for="refresh">Seleccionar estacion para mostrar</label>
-        <select name="refresh" ng-model="id2" ng-options="m.id as m.name for m in datos">
+        <select name="refresh" ng-model="id2" ng-options="m.id as m.description for m in stations">
 
         </select></h5>
     <h5><span class="bordes">Promedio Temperatura: {{datos.tempData}}</span> <span class="bordes" >Promedio Humedad: {{datos.humData}}</span> <span class="bordes">Promedio Caudal: {{datos.caudalData}}</span></h5>
 
-        <button ng-click="loadData2(target2, id2)" class="boton">Consultar</button>
+        <button ng-click="loadData2(id2, target2)" class="boton">Consultar</button>
     <button pdf-save-button="hola" pdf-name="someone.pdf" class="boton">Descargar reporte</button>
 
 

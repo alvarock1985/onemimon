@@ -6,38 +6,38 @@
 
 angular.module('onemiMonApp')
 
-.controller('ReportsCtrl', function($scope, dataOnHours){
+.controller('ReportsCtrl', function($scope,  stationData, dataArray){
 
     $scope.target2 = 5;
     $scope.id2 =1;
-
+    console.log($scope.id2);
     $scope.init = function(id){
 
         $scope.id = id;
         console.log(id);
     }
 
-    $scope.getAllData = function(){
-        dataOnHours.getAllData().success(function(data){
-            $scope.allData = data;
 
+
+    $scope.getStations = function(){
+        stationData.getAllStations().success(function(data){
+            $scope.stations = data;
         })
-
     }
 
-    $scope.loadData2 = function(target, id){
-        dataOnHours.getData2(target, id).success(function(data){
-            $scope.datos = data;
-            console.log($scope.datos);
-            $scope.dataArray = data;
+    $scope.loadData2 = function(stationId, timeRange){
+        dataArray.getDataTimeRange(stationId, timeRange).success(function(data){
+            $scope.datos = data[0];
+            //console.log($scope.datos);
+            var data2 = data[0];
             $scope.data = [];
-            $scope.labels = data.dataTimestamp;
+            $scope.labels = data2.dataTimestamp;
 
-            $scope.tempdata = data.dataArrayTemp;
+            $scope.tempdata = data2.dataArrayTemp;
             $scope.data.push($scope.tempdata);
-            $scope.humData = data.dataArrayHum;
+            $scope.humData = data2.dataArrayHum;
             $scope.data.push($scope.humData);
-            $scope.cauData = data.dataArrayHum;
+            $scope.cauData = data2.dataArrayHum;
             $scope.data.push($scope.cauData);
         });
 
@@ -45,7 +45,8 @@ angular.module('onemiMonApp')
     };
 
     //$scope.getAllData();
-    $scope.loadData2($scope.target2, $scope.id2);
+    $scope.getStations();
+    $scope.loadData2($scope.id2, $scope.target2);
 
 
     $scope.series = ['Temperatura', 'Humedad', 'Caudal'];

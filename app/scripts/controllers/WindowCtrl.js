@@ -8,25 +8,21 @@ angular.module('onemiMonApp')
 .controller('WindowCtrl', function($scope, dataArray){
 
 
-    $scope.init = function(id){
+    $scope.init = function(id) {
         $scope.id = id;
-        console.log($scope.id);
-
-
-
-
 
 
         dataArray.getData(id).success(function(data){
-            $scope.dataArray = data;
-            $scope.data = [];
-            $scope.labels = data.dataTimestamp;
 
-            $scope.tempdata = data.dataArrayTemp;
+            var data2 = data[0];
+            $scope.data = [];
+            $scope.labels = data2.dataTimestamp;
+
+            $scope.tempdata = data2.dataArrayTemp;
             $scope.data.push($scope.tempdata);
-            $scope.humData = data.dataArrayHum;
+            $scope.humData = data2.dataArrayHum;
             $scope.data.push($scope.humData);
-            $scope.cauData = data.dataArrayHum;
+            $scope.cauData = data2.dataArrayHum;
             $scope.data.push($scope.cauData);
 
 
@@ -34,12 +30,12 @@ angular.module('onemiMonApp')
         })
 
 
-    }
+    };
 
 
 
-
-    //console.log($scope.dataTemp);
+    console.log($scope.id);
+    console.log($scope.dataTemp);
     //console.log($scope.labels);
     $scope.series = ['Temperatura', 'Humedad', 'Caudal'];
     $scope.onClick = function (points, evt) {
