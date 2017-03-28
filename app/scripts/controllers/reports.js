@@ -44,7 +44,7 @@ angular.module('onemiMonApp')
 
     };
 
-    $scope.getAllData();
+    //$scope.getAllData();
     $scope.loadData2($scope.target2, $scope.id2);
 
 

@@ -77,11 +77,34 @@
                     <td>{{quartiles.otherMax}}</td>
                 </tr>
             </table>
-
-            <canvas id="line" class="chart chart-line" chart-data="data"
+            <p>Caudal</p>
+            <canvas id="line" class="chart chart-line" chart-data="dataCau"
                     chart-labels="labels" chart-series="series" chart-options="options"
                     chart-dataset-override="datasetOverride" chart-click="onClick">
             </canvas>
+            <p>Humedad</p>
+            <canvas id="line" class="chart chart-line" chart-data="dataHum"
+                    chart-labels="labels" chart-series="series" chart-options="options"
+                    chart-dataset-override="datasetOverride" chart-click="onClick">
+            </canvas>
+            <p>Temperatura</p>
+            <canvas id="line" class="chart chart-line" chart-data="dataTemp"
+                    chart-labels="labels" chart-series="series" chart-options="options"
+                    chart-dataset-override="datasetOverride" chart-click="onClick">
+            </canvas>
+
+
+            <p>Precipitaciones</p>
+            <canvas id="line" class="chart chart-line" chart-data="dataPrep"
+                    chart-labels="labels" chart-series="series" chart-options="options"
+                    chart-dataset-override="datasetOverride" chart-click="onClick">
+            </canvas>
+            <p>Nieve</p>
+            <canvas id="line" class="chart chart-line" chart-data="dataOther"
+                    chart-labels="labels" chart-series="series" chart-options="options"
+                    chart-dataset-override="datasetOverride" chart-click="onClick">
+            </canvas>
+
         </div>
     </div>
 

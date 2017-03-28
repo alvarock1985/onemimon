@@ -14,7 +14,7 @@ angular.module('onemiMonApp')
         };
 
         var getStations = function(riverId){
-            return $http.get('http://localhost:8080/EmuSensor/webapi/stations/'+riverId)
+            return $http.get('http://mon.acmeapps.xyz:8080/EmuSensor/webapi/stations/'+riverId)
                 .success(function(data){
                     return data;
                 });

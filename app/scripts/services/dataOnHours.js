@@ -9,7 +9,7 @@ angular.module('onemiMonApp')
 .factory('dataOnHours', ['$http', function($http){
 
     var getData = function(target, riverId) {
-        return $http.get('http://localhost:8080/EmuSensor/webapi/dataonhours/'+target+'/'+riverId)
+        return $http.get('http://mon.acmeapps.xyz:8080/EmuSensor/webapi/dataonhours/'+target+'/'+riverId)
             .success(function (data) {
                 return data;
             })

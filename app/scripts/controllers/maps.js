@@ -50,6 +50,7 @@ angular.module('onemiMonApp')
 
     $scope.loadDataQuartile = function(id){
         quartileData.getQuartileData(id).success(function(data){
+
             $scope.quartiles = data;
             $scope.data = [];
 
@@ -62,12 +63,79 @@ angular.module('onemiMonApp')
             $scope.cauMidHigh = (data.cauHigh + data.cauMid)/2;
             $scope.cauHigh = data.cauHigh;
             $scope.cauMax = data.cauMax;
-            $scope.data = [
+
+            $scope.tempMin = data.tempMin;
+            $scope.tempLow = data.tempLow;
+            $scope.tempLowMid = (data.tempMid + data.tempLow)/2;
+            console.log($scope.tempLowMid);
+            $scope.tempMid = data.cauMid;
+            $scope.tempMidHigh = (data.tempHigh + data.tempMid)/2;
+            $scope.tempHigh = data.tempHigh;
+            $scope.tempMax = data.tempMax;
+
+
+            $scope.humMin = data.humMin;
+            $scope.humLow = data.humLow;
+            $scope.humLowMid = (data.humMid + data.humLow)/2;
+            $scope.humMid = data.cauMid;
+            $scope.humMidHigh = (data.humHigh + data.humMid)/2;
+            $scope.humHigh = data.humHigh;
+            $scope.humMax = data.humMax;
+
+
+            $scope.prepMin = data.prepMin;
+            $scope.prepLow = data.prepLow;
+            $scope.prepLowMid = (data.prepMid + data.prepLow)/2;
+            $scope.prepMid = data.cauMid;
+            $scope.prepMidHigh = (data.prepHigh + data.prepMid)/2;
+            $scope.prepHigh = data.prepHigh;
+            $scope.prepMax = data.prepMax;
+
+
+            $scope.otherMin = data.otherMin;
+            $scope.otherLow = data.otherLow;
+            $scope.otherLowMid = (data.otherMid + data.otherLow)/2;
+            $scope.otherMid = data.cauMid;
+            $scope.otherMidHigh = (data.otherHigh + data.otherMid)/2;
+            $scope.otherHigh = data.otherHigh;
+            $scope.otherMax = data.otherMax;
+            
+            
+            $scope.dataCau = [
                 [{x:$scope.cauLow, y:1}, {x:$scope.cauMid, y:0},{x:$scope.cauLowMid, y:0},
                     {x:$scope.cauMid, y:1},{x:$scope.cauMidHigh, y:0},
                     {x:$scope.cauMid, y:0},{x:$scope.cauHigh, y:1},
                     {x:$scope.cauMax, y:1}]
             ];
+
+            $scope.dataHum = [
+                [{x:$scope.humLow, y:1}, {x:$scope.humMid, y:0},{x:$scope.humLowMid, y:0},
+                    {x:$scope.humMid, y:1},{x:$scope.humMidHigh, y:0},
+                    {x:$scope.humMid, y:0},{x:$scope.humHigh, y:1},
+                    {x:$scope.humMax, y:1}]
+            ];
+
+            $scope.dataTemp = [
+                [{x:$scope.tempLow, y:1}, {x:$scope.tempMid, y:0},{x:$scope.tempLowMid, y:0},
+                    {x:$scope.tempMid, y:1},{x:$scope.tempMidHigh, y:0},
+                    {x:$scope.tempMid, y:0},{x:$scope.tempHigh, y:1},
+                    {x:$scope.tempMax, y:1}]
+            ];
+
+            $scope.dataPrep = [
+                [{x:$scope.prepLow, y:1}, {x:$scope.prepMid, y:0},{x:$scope.prepLowMid, y:0},
+                    {x:$scope.prepMid, y:1},{x:$scope.prepMidHigh, y:0},
+                    {x:$scope.prepMid, y:0},{x:$scope.prepHigh, y:1},
+                    {x:$scope.prepMax, y:1}]
+            ];
+
+            $scope.dataOther = [
+                [{x:$scope.otherLow, y:1}, {x:$scope.otherMid, y:0},{x:$scope.otherLowMid, y:0},
+                    {x:$scope.otherMid, y:1},{x:$scope.otherMidHigh, y:0},
+                    {x:$scope.otherMid, y:0},{x:$scope.otherHigh, y:1},
+                    {x:$scope.otherMax, y:1}]
+            ];
+            
             return $scope.cauLow;
 
 
