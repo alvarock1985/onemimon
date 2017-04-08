@@ -17,7 +17,7 @@ angular.module('onemiMonApp')
     };
 
     var getDataTimeRange = function (stationId, timeRange){
-        return $http.get('http://localhost:8080/EmuSensor/webapi/stations/data/'+stationId+'/'+timeRange)
+        return $http.get('http://mon.acmeapps.xyz:8080/EmuSensor/webapi/stations/data/'+stationId+'/'+timeRange)
             .success(function(data){
                 return data;
             })
