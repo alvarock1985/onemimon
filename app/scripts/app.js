@@ -68,6 +68,12 @@ angular
             templateUrl: 'views/failEmulator.html'
         })
 
+        .when('/addStation', {
+            controler: 'AddStationCtrl',
+            controllerAs: 'add',
+            templateUrl: 'views/addStation.html'
+        })
+
       .otherwise({
         redirectTo: '/'
       });
