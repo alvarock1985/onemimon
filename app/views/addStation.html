@@ -1,10 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body>
+<body ng-controller="AddStationCtrl">
+
+    <br>
+        <h3>Agregue los datos de estacion</h3>
+        <p>Nombre de la estacion: </p>
+        <input type="text" name="Name" ng-model="name" >
+        <p>Descripcion de la estacion: </p>
+        <input type="text" name="Description" ng-model="description">
+        <p>Latitud: </p>
+        <input type="number" name="latitud" ng-model="latitude">
+        <p>Longitud: </p>
+        <input type="number" name="longitud" ng-model="longitude">
+        <p>Tipo: </p>
+        <input type="text" name="Tipo" ng-model="type">
+        <p>Caudal: </p>
+        <input type="text" name="Caudal" ng-model="watershed"><br>
+
+        <input type="button" value="send"  ng-click="postData(name, description, latitude, longitude, type, watershed)">
+
+
+    </div>
+
+
+
 
 </body>
 </html>

@@ -20,9 +20,17 @@ angular.module('onemiMonApp')
                 });
         };
 
+        var addStation = function(object){
+            return $http.post('http://mon.acmeapps.xyz:8080/EmuSensor/webapi/stations/add', JSON.stringify(object))
+                .success(function(data){
+                    return data;
+                });
+        }
+
         return {
             getAllStations : getAllStations,
-            getStations : getStations
+            getStations : getStations,
+            addStation : addStation
 
         }
 
