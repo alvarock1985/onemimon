@@ -37,7 +37,7 @@ angular.module('onemiMonApp')
                 longitude: $scope.longitude,
                 latitude: $scope.latitude,
                 type : $scope.type,
-                watershedid: $scope.watershed
+                watershedId: $scope.watershed
             }
 
 
