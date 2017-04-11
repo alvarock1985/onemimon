@@ -8,20 +8,20 @@
 
     <br>
         <h3>Agregue los datos de estacion</h3>
-        <p>Nombre de la estacion: </p>
-        <input type="text" name="Name" ng-model="name" >
-        <p>Descripcion de la estacion: </p>
-        <input type="text" name="Description" ng-model="description">
-        <p>Latitud: </p>
-        <input type="number" name="latitud" ng-model="latitude">
-        <p>Longitud: </p>
-        <input type="number" name="longitud" ng-model="longitude">
-        <p>Tipo: </p>
-        <input type="text" name="Tipo" ng-model="type">
-        <p>Caudal: </p>
-        <input type="text" name="Caudal" ng-model="watershed"><br>
+        <form ng-submit="postData()">
+            Nombre: {{name}}<br>
+            <input type="text" ng-model="name"><br>
+            Descripcion:<br> <input type="text" ng-model="description"><br>
+            Longitud:<br> <input type="number" step="any" ng-model="longitude"><br>
+            Latitude:<br> <input type="number" step="any" ng-model="latitude"><br>
+            Tipo: <br> <input type="text" ng-model="type"><br>
+            Cause: <br> <input type="number" ng-model="watershed"><br>
 
-        <input type="button" value="send"  ng-click="postData(name, description, latitude, longitude, type, watershed)">
+            <input type="submit" value="Enviar">
+
+
+
+        </form>
 
 
     </div>

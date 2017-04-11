@@ -69,7 +69,7 @@ angular
         })
 
         .when('/addStation', {
-            controler: 'AddStationCtrl',
+            controller: 'AddStationCtrl',
             controllerAs: 'add',
             templateUrl: 'views/addStation.html'
         })
