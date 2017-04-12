@@ -68,10 +68,21 @@ angular
             templateUrl: 'views/failEmulator.html'
         })
 
-        .when('/addStation', {
+        .when('/config', {
+            controller: 'ConfigCtrl',
+            controllerAs: 'config',
+            templateUrl: 'views/config.html'
+        })
+        .when('/config/addStation', {
             controller: 'AddStationCtrl',
-            controllerAs: 'add',
+            controllerAs: 'addStation',
             templateUrl: 'views/addStation.html'
+        })
+
+        .when('/config/addSensor', {
+            controller: 'AddSensorCtrl',
+            controllerAs: 'addSensor',
+            templateUrl: 'views/addSensor.html'
         })
 
       .otherwise({
