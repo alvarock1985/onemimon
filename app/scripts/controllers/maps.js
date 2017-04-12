@@ -10,7 +10,7 @@ angular.module('onemiMonApp')
       'Karma'
     ];
 
-
+    $scope.pinColor = "FF0000"
     $scope.markers = [];
     $scope.id = 1;
     $scope.target2 = 5;
@@ -30,6 +30,9 @@ angular.module('onemiMonApp')
             }
 
         },
+        markerOptions: {
+            icon:'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2%7C'+$scope.pinColor
+        },
         markers: $scope.markers,
         markersEvents:{
             click: function(marker, eventName, model, args){
@@ -42,6 +45,7 @@ angular.module('onemiMonApp')
     $scope.loadData = function(target, id){
         stationData.getStations(id).success(function(datos){
             $scope.markers = datos;
+            console.log(datos);
             $scope.loadDataQuartile(id);
             $scope.loadDataAvg(target, id)
 
