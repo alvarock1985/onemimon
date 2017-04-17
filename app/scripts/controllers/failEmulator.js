@@ -5,18 +5,7 @@
 
 angular.module('onemiMonApp')
 
-    .controller('FailCtrl', function($scope, stationData){
+    .controller('FailCtrl', function($scope, stationData, $http){
 
-        $scope.id = 1;
-        $scope.minutes = 0;
-        $scope.getStationData = function(){
-            stationData.getStations().success(function(data){
-                $scope.stationData = data;
-                console.log(data);
-            })
 
-        }
-
-        $scope.getStationData();
-        console.log($scope.stationData);
     });

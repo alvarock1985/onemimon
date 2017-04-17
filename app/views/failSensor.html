@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body ng-controller="FailSensorCtrl">
+<form ng-submit="postData()">
+    <H3>Emulador de fallas</H3>
+    <H4>Seleccione sensor para modificar</H4>
+    Estacion: <br>
+    <select name="stationName" ng-model="stationId" ng-options="m.id as m.description for m in stations" ng-change="getSensors(stationId)" required></select><br>
+    Sensor: {{sensorId}}<br>
+    <select name="sensorName" ng-model="sensorId" ng-options="m.id as m.name for m in sensors" required></select><br>
+    Estado: <br>
+    <select name="status" ng-model="status" ng-options="i as i for i in statusList" required></select><br>
+    <br>
+    <input type="submit" value="Enviar">
+    <br>
+    <br>
+    <p>Estado: {{sendStatus}}</p>
+
+
+
+</form>
+
+
+</body>
+</html>

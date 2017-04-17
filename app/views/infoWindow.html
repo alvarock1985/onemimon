@@ -1,6 +1,12 @@
 <div ng-controller="WindowCtrl" ng-init="init(parameter.id)" class="cursor">
    <p> Nombre de estacion: {{parameter.description}} </p>
     <p>Comportamiento ultimas 5 horas</p>
+    <p> Estado Sensores </p>
+    <p>Caudal : <img src="{{cauStatusIcon}}"> </p>
+    <p>Temperatura : <img src="{{tempStatusIcon}}"></p>
+    <p>Humedad: <img src="{{humStatusIcon}}"></p>
+    <p>Precipitaciones: <img src="{{precipStatusIcon}}"></p>
+    <p ng-if="snowStatus">Nieve : <img src="{{snowStatusIcon}}"></p>
    <canvas id="line" class="chart chart-line" chart-data="data"
            chart-labels="labels" chart-series="series" chart-options="options"
            chart-dataset-override="datasetOverride" chart-click="onClick">

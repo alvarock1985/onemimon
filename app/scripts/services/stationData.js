@@ -25,7 +25,8 @@ angular.module('onemiMonApp')
                 .success(function(data){
                     return data;
                 });
-        }
+        };
+
 
         return {
             getAllStations : getAllStations,

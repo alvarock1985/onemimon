@@ -85,6 +85,25 @@ angular
             templateUrl: 'views/addSensor.html'
         })
 
+        .when('/failEmulator/station', {
+            controller: 'FailStationCtrl',
+            controllerAs: 'failStation',
+            templateUrl: 'views/failStation.html'
+        })
+
+        .when('/failEmulator/sensor',{
+            controller: 'FailSensorCtrl',
+            controllerAs: 'failSensor',
+            templateUrl: 'views/failSensor.html'
+        })
+
+        .when('/config/configSummary',{
+            controller: 'SummaryCtrl',
+            controllerAs: 'summary',
+            templateUrl: 'views/configSummary.html'
+
+        })
+
       .otherwise({
         redirectTo: '/'
       });

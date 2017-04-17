@@ -3,17 +3,18 @@
 
 angular.module('onemiMonApp')
 
-  .controller('MapsCtrl', function ($scope, $http, uiGmapGoogleMapApi, stationData, riverData, quartileData, dataOnHours) {
+  .controller('MapsCtrl', function ($scope, $http, uiGmapGoogleMapApi, stationData, riverData, quartileData, dataOnHours, sensorData) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
 
-    $scope.pinColor = "FF0000"
+    $scope.pinColor = "00FF00";
     $scope.markers = [];
     $scope.id = 1;
     $scope.target2 = 5;
+    $scope.icon = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2%7C'+$scope.pinColor;
     console.log($scope.id);
 
     $scope.map = {
@@ -31,7 +32,7 @@ angular.module('onemiMonApp')
 
         },
         markerOptions: {
-            icon:'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2%7C'+$scope.pinColor
+
         },
         markers: $scope.markers,
         markersEvents:{
@@ -42,12 +43,67 @@ angular.module('onemiMonApp')
         }
     };
 
+    $scope.updateStationStatus = function(){
+        $scope.sensors = [];
+        console.log("getting stations");
+        stationData.getAllStations().success(function(data){
+           $scope.stations = data;
+           for(var i in $scope.stations){
+               var sensors = [];
+
+               sensorData.getSensors($scope.stations[i].id).success(function(datos){
+                   sensors = datos;
+                   var numFails = datos.reduce(function(n, sensor){
+                       return n + (sensor.status === 'FAIL');
+                   }, 0);
+                   var data = {
+                       id : datos[0].stationid,
+                       status: ""
+                   };
+
+
+
+
+                   if(numFails === sensors.length){
+                       data.status = 'FAIL';
+                   }else if (numFails > 1 || numFails < datos.lenght){
+                       data.status = 'WARN';
+                   }else{
+                       data.status = 'OK';
+                   }
+
+                   var toPost = JSON.stringify(data);
+                   $http.post('http://mon.acmeapps.xyz:8080/EmuSensor/webapi/stations/updateStatus', toPost)
+                       .success(function(data, status){
+                           $scope.sendStatus = "Datos enviados correctamente";
+                       })
+                       .error(function(data, status){
+                           $scope.sendStatus = "Error al enviar los datos";
+                       });
+               });
+           }
+        });
+
+
+    };
+
     $scope.loadData = function(target, id){
         stationData.getStations(id).success(function(datos){
             $scope.markers = datos;
-            console.log(datos);
+
+            for(var i in datos){
+                if(datos[i].status==="FAIL"){
+                    datos[i].icon = "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2%7CFF0000"
+                }else if(datos[i].status==="WARN"){
+                    datos[i].icon = "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2%7CFFFF00"
+                }else {
+                    datos[i].icon = "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2%7C00FF00"
+                }
+            }
+
+
             $scope.loadDataQuartile(id);
-            $scope.loadDataAvg(target, id)
+            $scope.loadDataAvg(target, id);
 
         });
       };
@@ -204,7 +260,7 @@ angular.module('onemiMonApp')
       $scope.value = function(value){
           $scope.target = value;
 
-      }
+      };
 
       $scope.loadDataAvg = function(target, id){
           dataOnHours.getData(target, id).success(function(data){
@@ -212,9 +268,8 @@ angular.module('onemiMonApp')
           });
 
 
-      }
-
-
+      };
+      $scope.updateStationStatus();
     uiGmapGoogleMapApi.then(function(maps){
 
     });

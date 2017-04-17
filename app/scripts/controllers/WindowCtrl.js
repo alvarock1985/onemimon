@@ -5,7 +5,61 @@
 
 angular.module('onemiMonApp')
 
-.controller('WindowCtrl', function($scope, dataArray){
+.controller('WindowCtrl', function($scope, dataArray, sensorData){
+
+    $scope.cauStatus = null;
+    $scope.tempStatus = null;
+    $scope.humStatus = null;
+    $scope.snowStatus = null;
+    $scope.precipStatus = null;
+    $scope.okIcon = 'http://keysizetest.verisignlabs.com/check.png';
+    $scope.failIcon = 'https://www.okentes.cz/inshop/Layout/Pages/__Images/red_cross.png';
+
+    $scope.checkStatus = function(stationId){
+        sensorData.getSensors(stationId).success(function(data){
+            $scope.sensors = data;
+            for(var i in $scope.sensors){
+                if($scope.sensors[i].name === 'caudal'){
+                    $scope.cauStatus = $scope.sensors[i].status;
+                    if($scope.cauStatus === 'FAIL'){
+                        $scope.cauStatusIcon = $scope.failIcon;
+                    }else{
+                        $scope.cauStatusIcon = $scope.okIcon;
+                    }
+                }else if($scope.sensors[i].name === 'temp'){
+                    $scope.tempStatus = $scope.sensors[i].status;
+                    if($scope.tempStatus === 'FAIL'){
+                        $scope.tempStatusIcon = $scope.failIcon;
+                    }else{
+                        $scope.tempStatusIcon = $scope.okIcon;
+                    }
+                }else if($scope.sensors[i].name === 'hum'){
+                    $scope.humStatus = $scope.sensors[i].status;
+                    if($scope.humStatus === 'FAIL'){
+                        $scope.humStatusIcon = $scope.failIcon;
+                    }else{
+                        $scope.humStatusIcon = $scope.okIcon;
+                    }
+                }else if($scope.sensors[i].name === 'precip'){
+                    $scope.precipStatus = $scope.sensors[i].status;
+                    if($scope.precipStatus === 'FAIL'){
+                        $scope.precipStatusIcon = $scope.failIcon;
+                    }else{
+                        $scope.precipStatusIcon = $scope.okIcon;
+                    }
+                }else{
+                    $scope.snowStatus = $scope.sensors[i].status;
+                    if($scope.snowStatus === 'FAIL'){
+                        $scope.snowStatusIcon = $scope.failIcon;
+                    }else{
+                        $scope.snowStatusIcon = $scope.okIcon;
+                    }
+                }
+            };
+        });
+
+
+    };
 
 
     $scope.init = function(id) {
@@ -24,18 +78,12 @@ angular.module('onemiMonApp')
             $scope.data.push($scope.humData);
             $scope.cauData = data2.dataArrayHum;
             $scope.data.push($scope.cauData);
-
-
-
-        })
-
-
+        });
+        $scope.checkStatus($scope.id);
     };
 
 
 
-    console.log($scope.id);
-    console.log($scope.dataTemp);
     //console.log($scope.labels);
     $scope.series = ['Temperatura', 'Humedad', 'Caudal'];
     $scope.onClick = function (points, evt) {
@@ -94,5 +142,7 @@ angular.module('onemiMonApp')
 
 
     };
+
+
 
 });
